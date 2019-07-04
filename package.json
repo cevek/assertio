@@ -1,0 +1,34 @@
+{
+    "name": "assertio",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "types": "dist/index",
+    "scripts": {
+        "test": ""
+    },
+    "files": [
+        "dist/index.js",
+        "dist/index.d.ts",
+        "dist/transformer.js",
+        "index.js",
+        "transform.js"
+    ],
+    "keywords": [
+        "assert",
+        "debug",
+        "typescript"
+    ],
+    "author": "cevek",
+    "license": "ISC",
+    "dependencies": {
+        "typescript": ">3.5.0"
+    },
+    "devDependencies": {
+        "parcel-bundler": "^1.12.3",
+        "parcel-plugin-ttypescript": "^1.0.1",
+        "ts-node": "^8.3.0",
+        "ttypescript": "^1.5.7",
+        "typescript": "^3.5.2"
+    }
+}
