@@ -39,6 +39,9 @@ export default function(program: ts.Program, pluginOptions: {productionEnv: stri
 }
 
 function isDebugSymbol(symbol: ts.Symbol | undefined) {
+    if (symbol !== undefined && isDebugFilename(symbol.declarations[0].getSourceFile().fileName)) {
+        return true;
+    }
     return (
         symbol !== undefined &&
         ts.isImportSpecifier(symbol.declarations[0]) &&
@@ -46,10 +49,14 @@ function isDebugSymbol(symbol: ts.Symbol | undefined) {
     );
 }
 
+function isDebugFilename(filename: string) {
+    return Boolean(filename.match(/(^|\W)debug(\.[jt]sx?)?$/));
+}
+
 function isDebugImport(node: ts.Node) {
     return (
         ts.isImportDeclaration(node) &&
         ts.isStringLiteral(node.moduleSpecifier) &&
-        Boolean(node.moduleSpecifier.text.match(/(^|\W)debug(\.[jt]sx?)?$/))
+        isDebugFilename(node.moduleSpecifier.text)
     );
 }
