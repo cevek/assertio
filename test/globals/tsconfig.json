@@ -1,0 +1,8 @@
+{
+    "compilerOptions": {
+        "target": "esnext",
+        "strict": true,
+        "outFile": "bundle.js",
+        "plugins": [{"transform": "../../transform"}]
+    }
+}

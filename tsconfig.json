@@ -7,5 +7,6 @@
         "inlineSourceMap": true,
         "outDir": "dist",
         "plugins": [{"transform": "./transform"}]
-    }
+    },
+    "exclude": ["dist", "node_modules"]
 }

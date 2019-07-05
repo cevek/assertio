@@ -5,7 +5,8 @@
     "main": "index.js",
     "types": "dist/index",
     "scripts": {
-        "test": ""
+        "build": "rm -rf dist && tsc",
+        "test": "NODE_ENV=production ttsc -p test/imports && NODE_ENV=production ttsc -p test/globals && node test.js"
     },
     "files": [
         "dist/index.js",

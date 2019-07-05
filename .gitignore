@@ -1,3 +1,7 @@
 node_modules
 dist
 .cache
+*.js
+!index.js
+!transform.js
+!test.js
