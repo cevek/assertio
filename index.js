@@ -1,1 +1,1 @@
-module.exports = require('./dist/transformer');
+module.exports = require('./dist');
