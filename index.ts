@@ -61,7 +61,7 @@ export function nonNullable<T>(value: T | undefined | null) {
     return value;
 }
 
-export function ensureHTMLElement<T>(value: Node) {
+export function ensureHTMLElement<T>(value: EventTarget) {
     if (!(value instanceof HTMLElement)) {
         throw createInvariant('node');
     }
