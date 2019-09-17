@@ -1,1 +1,1 @@
-export * from 'assertio';
+export * from '../../dist';

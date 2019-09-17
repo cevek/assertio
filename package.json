@@ -1,11 +1,12 @@
 {
     "name": "assertio",
-    "version": "1.0.3",
+    "version": "1.0.4",
     "description": "",
     "main": "index.js",
     "types": "dist/index",
     "scripts": {
         "build": "rm -rf dist && tsc",
+        "prepublish": "npm run build",
         "test": "NODE_ENV=production ttsc -p test/imports && NODE_ENV=production ttsc -p test/globals && node test.js"
     },
     "files": [

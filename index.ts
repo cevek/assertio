@@ -61,6 +61,13 @@ export function nonNullable<T>(value: T | undefined | null) {
     return value;
 }
 
+export function ensureHTMLElement<T>(value: Node) {
+    if (!(value instanceof HTMLElement)) {
+        throw createInvariant('node');
+    }
+    return value;
+}
+
 function createInvariant(value: unknown) {
     debugger;
     return new Error(`Value should not to be ${JSON.stringify(value)}`);

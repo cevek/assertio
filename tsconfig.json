@@ -8,5 +8,5 @@
         "outDir": "dist",
         "plugins": [{"transform": "./transform"}]
     },
-    "exclude": ["dist", "node_modules"]
+    "exclude": ["dist", "test", "node_modules"]
 }
