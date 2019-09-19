@@ -68,6 +68,17 @@ export function ensureHTMLElement<T>(value: EventTarget) {
     return value;
 }
 
+export function never(): never;
+export function never(value: never): never;
+export function never(value?: unknown): never {
+    debugger;
+    throw new Error(`Never possible value: ${JSON.stringify(value)}`);
+}
+
+export function hardCast<T>(value: unknown): T {
+    return value as T;
+}
+
 function createInvariant(value: unknown) {
     debugger;
     return new Error(`Value should not to be ${JSON.stringify(value)}`);
