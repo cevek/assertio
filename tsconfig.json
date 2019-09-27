@@ -4,8 +4,10 @@
         "module": "commonjs",
         "strict": true,
         "declaration": true,
-        "inlineSourceMap": true,
+        "declarationMap": true,
+        "sourceMap": true,
         "outDir": "dist",
+        "rootDir": "src",
         "plugins": [{"transform": "./transform"}]
     },
     "exclude": ["dist", "test", "node_modules"]

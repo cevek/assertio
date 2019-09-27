@@ -1,6 +1,6 @@
 {
     "name": "assertio",
-    "version": "1.0.7",
+    "version": "1.0.10",
     "description": "",
     "main": "index.js",
     "types": "dist/index",
@@ -10,9 +10,8 @@
         "test": "NODE_ENV=production ttsc -p test/imports && NODE_ENV=production ttsc -p test/globals && node test.js"
     },
     "files": [
-        "dist/index.js",
-        "dist/index.d.ts",
-        "dist/transformer.js",
+        "dist",
+        "src",
         "index.js",
         "transform.js"
     ],
