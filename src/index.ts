@@ -40,25 +40,25 @@ export function ensureBoolean(value: boolean) {
     return value;
 }
 
-export function nonUndefined<T>(value: T | undefined) {
+export function nonUndefined<T extends CheckUnion<T, undefined, 'value should be undefined union'>>(value: T) {
     if (value === undefined) {
         throw createInvariant(value);
     }
-    return value;
+    return value as NonUndefined<T>;
 }
 
-export function nonNull<T>(value: T | null) {
+export function nonNull<T extends CheckUnion<T, null, 'value should be null union'>>(value: T) {
     if (value === null) {
         throw createInvariant(value);
     }
-    return value;
+    return value as NonNull<T>;
 }
 
-export function nonNullable<T>(value: T | undefined | null) {
+export function nonNullable<T extends CheckUnion<T, undefined | null, 'value should be null | undefined union'>>(value: T) {
     if (value === null || value === undefined) {
         throw createInvariant(value);
     }
-    return value;
+    return value as NonNullable<T>;
 }
 
 export function ensureHTMLElement<T>(value: EventTarget) {
@@ -83,3 +83,7 @@ function createInvariant(value: unknown) {
     debugger;
     return new Error(`Value should not to be ${JSON.stringify(value)}`);
 }
+
+type CheckUnion<A, B, V> = B extends A ? unknown : V;
+type NonUndefined<T> = T extends undefined ? never : T;
+type NonNull<T> = T extends null ? never : T;
