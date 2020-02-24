@@ -1,87 +1,120 @@
-export function assert(value: boolean, msg?: string) {
+let runAssertFns = true;
+
+export function setConfig(options: {runAssertFns: boolean}) {
+    runAssertFns = options.runAssertFns;
+}
+
+export function assert(value: boolean, msg = `Assertion failed`) {
     if (value !== true) {
-        debugger;
-        throw new Error(`Assertion failed${msg === undefined ? ': ' + msg : ''}`);
+        throw new Error(msg);
     }
 }
 
-export function ensureArray<T extends readonly any[]>(value: T) {
+export function assertFn(value: () => boolean, msg = `Assertion failed`) {
+    if (runAssertFns) {
+        if (value() !== true) {
+            throw new Error(msg);
+        }
+    }
+}
+
+export function ensureArray(value: unknown, msg = `Expected array but got ${value}`): asserts value is unknown[] {
     if (!Array.isArray(value)) {
-        throw createInvariant(value);
+        throw new Error(msg);
     }
-    return value;
 }
 
-export function ensureObject<T extends object>(value: T) {
+export function ensureObject<T extends object>(
+    value: unknown,
+    msg = `Expected object but got ${value}`,
+): asserts value is T {
     if (typeof value !== 'object' || value === null) {
-        throw createInvariant(value);
+        throw new Error(msg);
     }
-    return value;
 }
 
-export function ensureString(value: string) {
+export function ensureString(value: unknown, msg = `Expected string but got ${value}`): asserts value is string {
     if (typeof value !== 'string') {
-        throw createInvariant(value);
+        throw new Error(msg);
     }
-    return value;
 }
 
-export function ensureNumber(value: number) {
+export function ensureNumber(value: unknown, msg = `Expected number but got ${value}`): asserts value is number {
     if (typeof value !== 'number') {
-        throw createInvariant(value);
+        throw new Error(msg);
     }
-    return value;
 }
 
-export function ensureBoolean(value: boolean) {
+export function ensureBoolean(value: unknown, msg = `Expected boolean but got ${value}`): asserts value is boolean {
     if (typeof value !== 'boolean') {
-        throw createInvariant(value);
+        throw new Error(msg);
     }
-    return value;
 }
 
-export function nonUndefined<T extends CheckUnion<T, undefined, 'value should be undefined union'>>(value: T) {
+export function ensureNonVoid<T>(value: T, msg = `Expected non undefined value`): asserts value is NonUndefined<T> {
     if (value === undefined) {
-        throw createInvariant(value);
+        throw new Error(msg);
+    }
+}
+
+export function ensureNonNull<T>(value: T, msg = `Expected non null value`): asserts value is NonNull<T> {
+    if (value === null) {
+        throw new Error(msg);
+    }
+}
+
+export function ensureNonNullable<T>(value: T, msg = `Expected non nullable value`): asserts value is NonNullable<T> {
+    if (value === undefined || value === null) {
+        throw new Error(msg);
+    }
+}
+
+export function nonVoid<T extends CheckUnion<T, undefined, 'value should be undefined union'>>(
+    value: T,
+    msg = `Expected non undefined value`,
+) {
+    if (value === undefined) {
+        throw new Error(msg);
     }
     return value as NonUndefined<T>;
 }
 
-export function nonNull<T extends CheckUnion<T, null, 'value should be null union'>>(value: T) {
+export function nonNull<T extends CheckUnion<T, null, 'value should be null union'>>(
+    value: T,
+    msg = `Expected non null value`,
+) {
     if (value === null) {
-        throw createInvariant(value);
+        throw new Error(msg);
     }
     return value as NonNull<T>;
 }
 
-export function nonNullable<T extends CheckUnion<T, undefined | null, 'value should be null | undefined union'>>(value: T) {
+export function nonNullable<T extends CheckUnion<T, undefined | null, 'value should be null | undefined union'>>(
+    value: T,
+    msg = `Expected non nullable value`,
+) {
     if (value === null || value === undefined) {
-        throw createInvariant(value);
+        throw new Error(msg);
     }
     return value as NonNullable<T>;
 }
 
-export function ensureHTMLElement<T>(value: EventTarget) {
-    if (!(value instanceof HTMLElement)) {
-        throw createInvariant('node');
-    }
-    return value;
+export function never(msg = `Never call`): never {
+    throw new Error(msg);
 }
 
-export function never(): never;
-export function never(value: never): never;
-export function never(value?: unknown): never {
-    debugger;
-    throw new Error(`Never possible value: ${JSON.stringify(value)}`);
+export function neverValue(value: never, msg = `Never possible value: ${JSON.stringify(value)}`): never {
+    throw new Error(msg);
 }
 
-export function hardCast<T>(value: unknown): T {
+export function castValue<T>(value: unknown): asserts value is T {}
+
+export function cast<T>(value: unknown): T {
     return value as T;
 }
 
-function createInvariant(value: unknown) {
-    debugger;
-    return new Error(`Value should not to be ${JSON.stringify(value)}`);
+export function as<T>(value: T): T {
+    return value;
 }
 
 type CheckUnion<A, B, V> = B extends A ? unknown : V;

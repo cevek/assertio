@@ -4,15 +4,24 @@ It makes testing much easier by giving you lots of assertions you can run agains
 
 
 ## Assertations
-* `assert(value: boolean, msg?: string)`
-* `ensureArray(value)`
-* `ensureObject(value)`
-* `ensureString(value)`
-* `ensureNumber(value)`
-* `ensureBoolean(value)`
-* `nonUndefined(value)`
-* `nonNull(value)`
-* `nonNullable(value)` - non null and non undefined
+* `assert(value: boolean, msg?)`
+* `assertFn(value: () => boolean, msg?)`
+* `ensureArray(value, msg?)`
+* `ensureObject(value, msg?)`
+* `ensureString(value, msg?)`
+* `ensureNumber(value, msg?)`
+* `ensureBoolean(value, msg?)`
+* `ensureNonVoid(value, msg?)`
+* `ensureNonNull(value, msg?)`
+* `ensureNonNullable(value, msg?)`
+* `nonVoid(value, msg?)`
+* `nonNull(value, msg?)`
+* `nonNullable(value, msg?)`
+* `never(msg?)`
+* `neverValue(value, msg?)`
+* `castValue(value)`
+* `cast(value)`
+* `as(value)`
 
 
 ## TypeScript transformer plugin
