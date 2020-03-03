@@ -22,6 +22,7 @@ It makes testing much easier by giving you lots of assertions you can run agains
 * `castValue(value)`
 * `cast(value)`
 * `as(value)`
+* `maybe(value)`
 
 
 ## TypeScript transformer plugin

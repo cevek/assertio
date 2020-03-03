@@ -117,6 +117,10 @@ export function as<T>(value: T): T {
     return value;
 }
 
+export function maybe<T>(val: T): T | undefined {
+    return val;
+}
+
 type CheckUnion<A, B, V> = B extends A ? unknown : V;
 type NonUndefined<T> = T extends undefined ? never : T;
 type NonNull<T> = T extends null ? never : T;
