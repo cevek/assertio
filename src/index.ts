@@ -69,30 +69,21 @@ export function ensureNonNullable<T>(value: T, msg = `Expected non nullable valu
     }
 }
 
-export function nonVoid<T extends CheckUnion<T, undefined, 'value should be undefined union'>>(
-    value: T,
-    msg = `Expected non undefined value`,
-) {
+export function nonVoid<T>(value: T, msg = `Expected non undefined value`) {
     if (value === undefined) {
         throw new Error(msg);
     }
     return value as NonUndefined<T>;
 }
 
-export function nonNull<T extends CheckUnion<T, null, 'value should be null union'>>(
-    value: T,
-    msg = `Expected non null value`,
-) {
+export function nonNull<T>(value: T, msg = `Expected non null value`) {
     if (value === null) {
         throw new Error(msg);
     }
     return value as NonNull<T>;
 }
 
-export function nonNullable<T extends CheckUnion<T, undefined | null, 'value should be null | undefined union'>>(
-    value: T,
-    msg = `Expected non nullable value`,
-) {
+export function nonNullable<T>(value: T, msg = `Expected non nullable value`) {
     if (value === null || value === undefined) {
         throw new Error(msg);
     }
@@ -121,6 +112,5 @@ export function maybe<T>(val: T): T | undefined {
     return val;
 }
 
-type CheckUnion<A, B, V> = B extends A ? unknown : V;
 type NonUndefined<T> = T extends undefined ? never : T;
 type NonNull<T> = T extends null ? never : T;
