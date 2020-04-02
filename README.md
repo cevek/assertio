@@ -5,6 +5,7 @@ It makes testing much easier by giving you lots of assertions you can run agains
 
 ## Assertations
 * `assert(value: boolean, msg?)`
+* `assertValue(value, predicate, msg?)`
 * `assertFn(value: () => boolean, msg?)`
 * `ensureArray(value, msg?)`
 * `ensureObject(value, msg?)`

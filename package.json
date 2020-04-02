@@ -1,19 +1,20 @@
 {
     "name": "assertio",
-    "version": "1.0.17",
+    "version": "1.0.24",
     "description": "",
     "main": "index.js",
-    "types": "dist/index",
+    "types": "typings",
     "scripts": {
-        "build": "rm -rf dist && tsc",
+        "build": "rm -rf typings && tsc",
         "prepublish": "npm run build",
         "test": "NODE_ENV=production ttsc -p test/imports && NODE_ENV=production ttsc -p test/globals && node test.js"
     },
     "files": [
-        "dist",
-        "src",
+        "typings",
         "index.js",
-        "transform.js"
+        "index.ts",
+        "transform.js",
+        "transform.ts"
     ],
     "keywords": [
         "assert",

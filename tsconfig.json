@@ -1,14 +1,13 @@
 {
     "compilerOptions": {
         "target": "esnext",
-        "module": "commonjs",
+        "module": "ESNext",
+        "moduleResolution": "node",
         "strict": true,
         "declaration": true,
+        "declarationDir": "typings",
         "declarationMap": true,
-        "sourceMap": true,
-        "outDir": "dist",
-        "rootDir": "src",
         "plugins": [{"transform": "./transform"}]
     },
-    "exclude": ["dist", "test", "node_modules"]
+    "exclude": ["test"]
 }

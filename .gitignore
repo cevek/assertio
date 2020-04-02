@@ -1,7 +1,5 @@
 node_modules
-dist
-.cache
 *.js
-!index.js
-!transform.js
+*.map
 !test.js
+typings

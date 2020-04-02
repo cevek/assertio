@@ -4,11 +4,13 @@ export function setConfig(options: {runAssertFns: boolean}) {
     runAssertFns = options.runAssertFns;
 }
 
-export function assert(value: boolean, msg = `Assertion failed`) {
+export function assert(value: boolean, msg = `Assertion failed`): asserts value {
     if (value !== true) {
         throw new Error(msg);
     }
 }
+
+export function assertType<T>(value: unknown): asserts value is T {}
 
 export function assertFn(value: () => boolean, msg = `Assertion failed`) {
     if (runAssertFns) {
